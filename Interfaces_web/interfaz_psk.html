@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ataque PSK</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="grid-container">
+    <div class="header-container">
+        <!-- Texto en grande -->
+        <h1 class="header-text">Ataque a punto de acceso con seguridad PSK</h1>
+    </div>
+    <!-- Barra de progreso -->
+    <div class="progress-bar-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+            <div class="progress-text">0%</div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Menú a la izquierda -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="interfaz_wep.html">WEP</a></li>
+                <li><a href="interfaz_psk.html">PSK</a></li>
+            </ul>
+        </div>
+
+        <!-- Contenido principal a la derecha -->
+        <div class="main-content">
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 1</h1>
+                    <p class="description-titulo">Poner tarjeta de red en modo monitor</p>
+                    <p class="description">
+                        Si ya ha realizado el apartado del punto de acceso con seguridad WEP, al introducir
+                        correctamente la instrucción requerida le derá error al ya estar la interfaz de red<strong>
+                            wlan1 </strong>en modo monitor.
+                        <br><br>
+                        A continuación, escribe el código para poner la tarjeta de red de la interfaz wlan1 en modo
+                        monitor.
+                        <br><br>
+                        El formato de la instruccion requerida es:
+
+                        <br><br>
+
+                        <strong> airmon-ng [opcion] [nombre_tarjeta_de_red] </strong>
+                    </p>
+
+                    <p class="error-text" id="error-message-1" style="display: none;">¡Error! El comando introducido
+                        no
+                        es
+                        válido</p>
+                    <p class="acierto-text" id="acierto-message-1" style="display: none;">Correcto! El comando
+                        introducido es correcto</p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-1" disabled>
+                        <input type="text" class="text-input" id="texto-1">
+                        <button class="code-button-1">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 2</h1>
+                    <p class="description-titulo">Escanear la red</p>
+                    <p class="description">
+                        En este apartado se pide que introduzca el comando que le permitirá realizar un escaneo del
+                        canal
+                        donde se encuentra el punto de acceso<strong> wifi-psk-1</strong>, tenga en cuenta que ya se le
+                        ha proporcionado el canal (6) aunque es recomendable que para practica intente averiguarlo usted
+                        mismo.
+                        <br><br>
+
+                        El formato de la instruccion requerida es:
+
+                        <br><br>
+
+                        <strong> airodump-ng [nombre_de_la_interfaz_en_modo_monitor] -w [nombre_del_fichero_generado] -c
+                            [canal_donde_se_encuenta_el_AP]</strong>
+
+                        <br><br>
+
+                        Por consistenia del código, llame a la captura de tráfico captura.
+                    </p>
+                    <p class="error-text" id="error-message-2" style="display: none;">¡Error! El comando introducido
+                        no
+                        es
+                        válido.
+                    </p>
+                    <p class="acierto-text" id="acierto-message-2" style="display: none;">Correcto! El comando
+                        introducido es correcto. <br><br>
+                        Por conformidad con el resto de scripts, se ha ejecutado el
+                        siguiente comando: <br><br>
+                        sudo airodump-ng wlan1mon -w Docker/TFM-1-main/Scripts/psk/wifi/captura -c 6 </p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-2" disabled>
+                        <input type="text" class="text-input" id="texto-2">
+                        <button class="code-button-2">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 3</h1>
+                    <p class="description-titulo">Forzar deautenticación</p>
+                    <p class="description">
+                        Para poder vulnerar el punto de acceso es necesario capturar el <strong>handshake</strong>. Esto
+                        no es más que una sucesión de mensajes que suceden cuando un cliente quiere conectarse al AP y
+                        que permiten autenticar al dispositivo.
+
+                        <br><br>
+
+                        Por lo tanto, para capturar el <strong>handshake</strong> debemos forzar la desconexión de algún
+                        cliente, para ello debemos conocer la dirección MAC del cliente en cuestión. Aunque esto no es
+                        una tarea difícil, queremos mostrar otra opción.
+
+                        <br><br>
+
+                        Esta otra opción aunque es menos sofisticada, es más efectiva. Consiste en forzar la desconexión
+                        del punto de acceso directamente. Esto provocará que todos los clientes conectados se
+                        desconectes e intenten reconectarse, lo que nos permitirá aumentar más la posibilidad de
+                        capturar el <strong>handshake</strong>.
+
+                        <br><br>
+
+                        Para realizar esto utilizaremos la herramienta <strong> aireplay-ng</strong>, que nos permitirá
+                        mandar peticiones de deautenticación tanto a un cliente como al propio punto de acceso.
+                        <br><br>
+
+                        El formato de la instruccion requerida es:
+                        <br><br>
+                        [opcion]: Esta flag es un número entero que indica que tipo de petición queremos mandar y 10 es
+                        el número de peticiones a mandar.
+
+                        <br> <br>
+                        [BSSID_del_AP]: puedes obtenerlo de la ejecución del comando anterior.
+                        <br><br>
+
+                        <strong> aireplay-ng -[opcion] 10 -a [BSSID_del_AP] [interfaz_de_red_en_modo_monitor]</strong>
+
+                        <br><br>
+
+                        Si eres un poco curioso y perspicaz te habrás dado cuenta de que si en vez de mandar 10
+                        peticiones de deautenticación mandas 100, 1000 o incluso 1000000000 estarías impidiendo que
+                        cualquier dispositivo se pueda conectar al punto de acceso. <br><br>
+                        Efectivamente, esto es conocido como un ataque de denegación de servicio o DDOS.
+
+                    </p>
+                    <p class="error-text" id="error-message-3" style="display: none;">¡Error! El comando introducido
+                        no
+                        es
+                        válido</p>
+                    <p class="acierto-text" id="acierto-message-3" style="display: none;">Correcto! El comando
+                        introducido es correcto. <br><br>Por conformidad con el resto de scripts, se ha ejecutado el
+                        siguiente comando: <br><br>
+                        sudo aireplay-ng -0 10 -a F0:9F:C2:71:22:12 wlan1mon
+                    </p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-3" disabled>
+                        <input type="text" class="text-input" id="texto-3">
+                        <button class="code-button-3">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 4</h1>
+                    <p class="description-titulo">Crackear la contraseña</p>
+                    <p class="description">
+                        Una vez ejecutados los comandos anteriores correctamente, estaríamos en el punto en el que
+                        habríamos conseguido capturar el <strong>handshake</strong>.
+
+                        <br><br>
+
+                        Para poder crackear la contraseña haremos uso de la herramienta <strong>aircrack-ng</strong>,
+                        además, haremos uso del diccionario <strong>rockyou</strong>.
+
+                        <br><br>Este diccionario es muy
+                        utilizado
+                        en el mundo del hacking y contiene una gran cantidad de contraseñas comunes.
+
+                        <br><br>Aquí se le muestran algunas contraseñas del diccionario:
+
+                        <br><br>
+                        123456<br>
+                        12345<br>
+                        123456789<br>
+                        password<br>
+                        iloveyou<br>
+                        princess<br>
+                        1234567<br>
+                        rockyou<br>
+                        12345678<br>
+                        abc123<br>
+                        nicole<br>
+                        daniel<br>
+                        babygirl<br>
+                        monkey<br><br>
+
+                        El formato de la instruccion requerida es:
+
+
+                        <br><br>
+
+                        <strong> aircrack-ng [nombre_del_fichero_.cap] -w [diccionario_a_utilizar].txt</strong>
+
+                        <br><br>
+                    </p>
+                    <p class="error-text" id="error-message-4" style="display: none;">¡Error! El comando introducido
+                        no
+                        es
+                        válido</p>
+                    <p class="acierto-text" id="acierto-message-4" style="display: none;">Correcto! El comando
+                        introducido es correcto. <br><br>Por conformidad con el resto de scripts, se ha ejecutado el
+                        siguiente comando: <br><br>
+                        aircrack-ng Docker/TFM-1-main/Scripts/psk/wifi/captura-01.cap -w
+                        Docker/TFM-1-main/Scripts/psk/rockyou.txt
+                    </p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-4" disabled>
+                        <input type="text" class="text-input" id="texto-4">
+                        <button class="code-button-4">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 5</h1>
+                    <p class="description-titulo">Comprobar contraseña</p>
+                    <p class="description">
+                        Si has llegado hasta aquí habiendo habiendo completado las tareas anteriores significa que has conseguido averiguar la contraseña.
+                        <br><br>
+                        Ya solo falta comprobar que sea correcta, por favor, introduce la
+                        contraseña para comprobar si es la correcta.
+                    </p>
+                    <p class="error-text" id="error-message-5" style="display: none;">¡Error! La contraseña no es
+                        correcta</p>
+                    <p class="acierto-text" id="acierto-message-5" style="display: none;">Correcto! La contraseña es
+                        correcta</p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-5" disabled>
+                        <input type="text" class="text-input" id="texto-5">
+                        <button class="code-button-5">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts_psk.js"></script>
+</body>
+
+</html>

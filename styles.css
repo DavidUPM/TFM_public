@@ -1,0 +1,246 @@
+html {
+    height: 100%;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+body {
+    background-color: #263143;
+    color: white;
+    min-height: 100%;
+}
+
+.header-container {
+    background-color: #111927;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    border-radius: 25px;
+    margin-left: 220px;
+    margin-right: 20px;
+}
+
+.header-text {
+    font-size: 3em;
+    text-align: center;
+    margin: 2;
+}
+
+.description {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar {
+    position: fixed;
+    border: 1px solid #111927;
+    width: 200px;
+    background-color: #111927;
+    border-radius: 10px;
+    margin-top: 20px; /* Ajusta este valor para cambiar el espacio superior */
+    align-self: flex-start;
+    text-align: center; /* Centrar el contenido */
+}
+
+.sidebar-title {
+    margin-top: 10px; /* Añadir espacio superior */
+    font-weight: bold;
+}
+
+.description-titulo {
+    font-size: 30px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 200px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 15px;
+}
+
+.sidebar a {
+    color: white;
+    /* Cambia el color del texto a blanco */
+    font-size: 18px;
+    /* Ajusta el tamaño de la fuente */
+    padding-right: 10px; /* Cambiar padding-left a padding-right */
+    text-decoration: none;
+}
+
+.checkbox {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: 2px solid #ffffff;
+}
+
+.checkbox:checked {
+    background-color: #21ad0e;
+}
+
+.text-input {
+    width: 1100px;
+    /* Ancho del campo de entrada */
+    height: 40px;
+    /* Aumenta la altura del campo de entrada */
+    font-size: 18px;
+}
+
+#password {
+    width: 500px;
+    /* Ancho del campo de entrada */
+    height: 40px;
+    /* Aumenta la altura del campo de entrada */
+    font-size: 18px;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px; /* Espacio entre el campo de contraseña y el contenido de arriba */
+}
+
+[class^="code-button"] {
+    margin-left: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+button {
+    background-color: rgb(0, 191, 255);
+    /* Fondo azul claro para los botones */
+    color: white;
+    /* Texto blanco en los botones */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6eb2ff;
+    /* Color de fondo al pasar el mouse sobre el botón */
+}
+
+.task-container {
+    border: 1px solid #111927;
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #111927;
+}
+
+.task-container .section {
+    color: #ffffff;
+    /* Color de texto dentro del contenedor */
+}
+
+.progress-bar-container {
+    position: fixed;
+    top: 70px; /* Ajusta la posición vertical */
+    left: 5px; /* Ajusta la posición horizontal */
+    width: 200px;
+}
+
+.progress-bar {
+    height: 30px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    /* Inicialmente la barra está vacía */
+    background-color: rgb(0, 191, 255);
+    /* Color verde */
+    border-radius: 15px;
+    /* Bordes redondeados */
+    position: absolute;
+    /* Posición absoluta para el llenado */
+    top: 0;
+    left: 0;
+    transition: width 0.5s ease-in-out;
+    /* Transición suave del ancho */
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    /* Texto en color blanco para mejor visibilidad */
+}
+
+.error-text {
+    color: red;
+    /* Color rojo para el texto de error */
+    font-weight: bold;
+    /* Texto en negrita */
+    animation: shake 0.5s ease-in-out 2;
+    /* Animación de temblor */
+}
+
+.acierto-text {
+    color: green;
+    /* Color rojo para el texto de error */
+    font-weight: bold;
+    /* Texto en negrita */
+    animation: shake 0.5s ease-in-out 2;
+    /* Animación de temblor */
+}
+
+/* Animación de temblor */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

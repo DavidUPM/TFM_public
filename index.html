@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="grid-container">
+    <div class="header-container">
+        <!-- Texto en grande -->
+        <h1 class="header-text">Bienvenido</h1>
+    </div>
+    <div class="container">
+        <!-- Menú a la izquierda -->
+        <div class="sidebar">
+            <div class="sidebar-title">Cursos disponibles</div>
+            <ul>
+                <li><a href="Interfaces_web/interfaz_wep.html">WEP</a></li>
+                <li><a href="Interfaces_web/interfaz_psk.html">PSK</a></li>
+            </ul>
+        </div>
+
+        <!-- Contenido principal a la derecha -->
+        <div class="main-content">
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 1</h1>
+                
+                    <p class="description">
+                        Elige entre modo alumno o modo profesor.
+
+                        <br><br>
+                    
+                    Para acceder en modo estudiante simplemente pulse el botón, para acceder en modo profesor debe introducir la contraseña
+                    </p>
+                
+                    <div class="container">
+                        <button id="modo-alumno" class="code-button">Acceder en modo estudiante</button>
+                    </div>
+
+                    <p class="error-text" id="error-message-1" style="display: none;">¡Error! La contraseña es incorrecta</p>
+                    <p class="acierto-text" id="acierto-message-1" style="display: none;">¡Correcto! La contraseña del modo profesor es correcta</p>
+
+                    <div class="password-container">
+                        <input type="password" class="text-input" id="password">
+                        <button id="modo-profesor" class="code-button">Acceder en modo profesor</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

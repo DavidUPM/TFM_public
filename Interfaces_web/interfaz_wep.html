@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ataque WEP</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="grid-container">
+    <div class="header-container">
+        <!-- Texto en grande -->
+        <h1 class="header-text">Ataque a punto de acceso con seguridad WEP</h1>
+    </div>
+    <!-- Barra de progreso -->
+    <div class="progress-bar-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+            <div class="progress-text">0%</div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Menú a la izquierda -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="interfaz_wep.html">WEP</a></li>
+                <li><a href="interfaz_psk.html">PSK</a></li>
+            </ul>
+        </div>
+
+        <!-- Contenido principal a la derecha -->
+        <div class="main-content">
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 1</h1>
+                    <p class="description-titulo">Poner tarjeta de red en modo monitor</p>
+                    <p class="description">
+                        Como norma general, las tarjetas de red suelen tener 2 modos de trabajo (maganed y monitor). El
+                        que nos interesa es este último, ya que nos permite capturar todo el tráfico que pasa por
+                        nuestra interfaz de red.
+
+                        <br><br>
+
+                        Por lo tanto, lo primero que debemos hacer es cambiar el modo de la tarjeta a modo monitor. Para
+                        ello vamos a utilizar el comando <strong>airmon-ng</strong>, teniendo en cuenta que la tarjeta
+                        de red que
+                        queremos poner en modo monitor será<strong> wlan1 </strong>.
+
+                        <br><br>
+
+                        A continuación, escribe el código para poner la tarjeta de red de la interfaz <strong>
+                            wlan1</strong>en modo
+                        monitor.
+
+                        <br> <br>
+
+                        El formato de la instruccion requerida es:
+
+                        <br><br>
+
+                        <strong> airmon-ng [opcion] [nombre_tarjeta_de_red] </strong>
+                    </p>
+
+                    <p class="error-text" id="error-message-1" style="display: none;">¡Error! El comando introducido
+                        no
+                        es
+                        válido</p>
+                    <p class="acierto-text" id="acierto-message-1" style="display: none;">Correcto! El comando
+                        introducido es correcto</p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-1" disabled>
+                        <input type="text" class="text-input" id="texto-1">
+                        <button class="code-button-1">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 2</h1>
+                    <p class="description-titulo">Escanear la red</p>
+                    <p class="description">
+                        El siguiente paso será escanear la red en busca de distintos puntos de acceso vulnerables a
+                        los
+                        que
+                        poder atacar. Para ello utilizaremos la <strong> airodump-ng</strong>.
+                        <br><br>
+                        Para este apartado se le
+                        indica tanto el <strong> canal (1)</strong> como el <strong> BSSID (F0:9F:C2:AA:19:29)</strong> del AP, aunque lo más
+                        recomendable sería que ejecutase <strong> airodump-ng</strong> por su cuenta para averiguarlos.
+                        <br><br>
+                        El formato de la instruccion requerida es:
+
+                        <br><br>
+
+                        <strong> airodump-ng -c [canal_donde_se_encuenta_el_AP] -w [nombre_del_fichero_generado] --bssid
+                            [MAC_del_AP] [nombre_de_la_interfaz_en_modo_monitor] </strong>
+
+                        <br><br>
+
+                        Por consistenia del código, llame a la captura de tráfico captura.
+                    </p>
+                    <p class="error-text" id="error-message-2" style="display: none;">¡Error! El comando introducido
+                        no
+                        es
+                        válido</p>
+                    <p class="acierto-text" id="acierto-message-2" style="display: none;">Correcto! El comando
+                        introducido es correcto
+                        <br><br>
+                        Por conformidad con el resto de scripts, se ha ejecutado el
+                        siguiente comando: <br><br>
+                        sudo airodump-ng -c 1 -w Docker/TFM-1-main/Scripts/wep/wifi/canal-1 --bssid F0:9F:C2:AA:19:29
+                        wlan1mon
+                    </p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-2" disabled>
+                        <input type="text" class="text-input" id="texto-2">
+                        <button class="code-button-2">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 3</h1>
+                    <p class="description-titulo">Crackear contraseña</p>
+                    <p class="description">
+
+                        Hemos llegado al momento más esperado, poder cracker la contraseña del punto de acceso, para
+                        ello se
+                        va a utiliar la herramienta <strong> aircrack</strong>. <br><br>
+
+                        La instrucción anterior nos generó un fichero .cap con el resultado de la captura de tráfico. No
+                        es necesario que cierre la terminal con la captura de tráfico, pero si que es recomendable que
+                        espere un tiempo mientras que <strong> airodump-ng</strong> va capturando tráfico. Esto
+                        facilitará el proceso de crackeo de la contraseña ya que tendrá más muestras para poder
+                        averiguar el vector de inicialización.
+
+                        El formato de la instruccion requerida es:
+
+                        <br><br>
+
+                        <strong> aircrack-ng [nombre_del_fichero_.cap] </strong>
+
+                        <br><br>
+                        Por consistenia del código, llame a la captura de tráfico captura.
+                    </p>
+                    <p class="error-text" id="error-message-3" style="display: none;">¡Error! El comando introducido
+                        no
+                        es
+                        válido</p>
+                    <p class="acierto-text" id="acierto-message-3" style="display: none;">Correcto! El comando
+                        introducido es correcto
+                        <br><br>
+                        Por conformidad con el resto de scripts, se ha ejecutado el
+                        siguiente comando: <br><br>
+                        sudo aircrack-ng Docker/TFM-1-main/Scripts/wep/wifi/canal-1-01.cap
+                    </p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-3" disabled>
+                        <input type="text" class="text-input" id="texto-3">
+                        <button class="code-button-3">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+            <div class="task-container">
+                <div class="section">
+                    <h1>Tarea 4</h1>
+                    <p class="description-titulo">Comprobar contraseña</p>
+                    <p class="description">
+                        Si ha llegado hasta aquí significa que ha completado todos los pasos anteriores correctamente y ya solo falta comprobar que la contraseña descrifrada sea correcta.
+                        <br><br>
+                        Por favor, introduce la contraseña para comprobar si es la correcta.
+                    </p>
+                    <p class="error-text" id="error-message-4" style="display: none;">¡Error! La contraseña no es
+                        correcta</p>
+                    <p class="acierto-text" id="acierto-message-4" style="display: none;">Correcto! La contraseña es
+                        correcta</p>
+
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox-4" disabled>
+                        <input type="text" class="text-input" id="texto-4">
+                        <button class="code-button-4">Comprobar código</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts_wep.js"></script>
+</body>
+
+</html>
